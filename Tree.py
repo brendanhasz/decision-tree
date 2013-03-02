@@ -1,4 +1,4 @@
-# tree.py
+# Tree.py
 # Brendan Hasz
 # Basic implementation of a tree
 
