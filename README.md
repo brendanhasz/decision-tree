@@ -3,7 +3,7 @@
 
 
 # Useage
-[`python`]() is required to run the code.  To build a decision tree from training data, run
+[`python`](http://www.python.org/) is required to run the code.  To build a decision tree from training data, run
 
 ```bash
 $ python builddt.py train_data_filename dt_filename
