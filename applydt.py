@@ -5,7 +5,7 @@ import sys
 from dt_io import *
 
 
-#Build decision tree from passed file
+#Apply decision tree on data in passed file
 apply_decision_tree(sys.argv[1], sys.argv[2])
 
 
