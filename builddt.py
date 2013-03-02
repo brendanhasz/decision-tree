@@ -1,4 +1,4 @@
-# build_dt.py
+# builddt.py
 # Builds a decision tree from a file
 
 import sys

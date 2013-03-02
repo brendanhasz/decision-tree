@@ -11,7 +11,7 @@ def info_gain(Y, A):
         for i in range(0,len(A)):
             if A[i]==e:
                 Ya.append(Y[i])
-        thesum = thesum + len(Ya)/len(A)*entropy(Ya)
+        thesum = thesum + float(len(Ya))/len(A)*entropy(Ya)
     return entropy(Y)-thesum
         
     
