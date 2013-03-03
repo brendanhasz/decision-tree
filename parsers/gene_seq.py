@@ -6,3 +6,11 @@ import sys
 
 fn_in = sys.argv[1]
 fn_out = sys.argv[2]
+
+infile = open(fn_in, 'r')
+outfile = open(fn_out, 'w')
+outfile.write("".join([",".join([l.translate(None,',')][0])[0:-2]+'\n' for l in infile]))
+outfile.close()
+infile.close()
+
+

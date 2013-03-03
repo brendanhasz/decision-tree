@@ -8,7 +8,7 @@ from info_funcs import *
 
 
 #Build decision tree from passed file
-build_decision_tree(sys.argv[1], sys.argv[2])
+#build_decision_tree(sys.argv[1], sys.argv[2])
 
 
 def build_decision_tree(train_data_fn, dt_fn):
@@ -31,5 +31,5 @@ def parse_training_file(filename):
     data = []
     thefile = open(filename, 'r')
     [[data.append([l.strip().split(',')[0], l.strip().split(',')[1:]])] for l in thefile]
-    file.close()
+    thefile.close()
     return data
