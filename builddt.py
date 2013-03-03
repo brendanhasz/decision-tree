@@ -7,7 +7,7 @@ from Tree import *
 from info_funcs import *
 
 
-def ID3(examples, attributes):
+def ID3(examples, attributes, attr_labels):
     '''
     Performs the Interactive Dichotomiser 3 algorithm on a list of examples
     and a list of lists of attributes
@@ -25,9 +25,11 @@ def ID3(examples, attributes):
             if thisinfo>maxinfo:
                 i_A = i
                 maxinfo=thisinfo
+        root.data = attr_labels[i_a] #Store node attribute label
         #For each possible value of max info attribute, add branch
         for v in set(attributes[i_A])
-                
+            child = Tree()
+            root.addchild(child)
 
  
     return root
@@ -58,7 +60,7 @@ def parse_training_file(filename):
 def build_decision_tree(train_data_fn, dt_fn):
     print "Building decision tree for "+train_data_fn+" ..."
     examples, attributes = parse_training_file(train_data_fn) #Parse input
-    dt = ID3(examples, attributes) #Run decision-tree building ID3 algorithm
+    dt = ID3(examples, attributes, range(0,len(attributes))
     save_dt(dt, dt_fn) #Save the decision tree
     print "Built decision tree for "+train_data_fn+" saved in "+dt_fn
 
