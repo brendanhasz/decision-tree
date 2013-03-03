@@ -1,7 +1,7 @@
-.pyc
-.swp
-.data
-.test
-.train
-.dt
+*.pyc
+*.swp
+*.data
+*.test
+*.train
+*.dt
 
