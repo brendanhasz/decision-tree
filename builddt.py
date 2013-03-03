@@ -16,7 +16,7 @@ def ID3(ex, att, attr_labels, rl):
     '''
     root = Tree()
     print rl
-    if rl>MAX_RECURSION:
+    if rl>MAX_RECURSION: #Upon max recursion, return most frequent
         root.data = most_common(ex)
         return root
     if len(set(ex))==1: #if only 1 class of ie left, use it
@@ -27,10 +27,7 @@ def ID3(ex, att, attr_labels, rl):
         #Find attribute that best classifies examples
         maxinfo = 0
         i_A = -1
-        #print ' '
         for i in range(0,len(att)):
-            #print len(att)
-            #print i
             thisinfo = info_gain(ex, att[i])
             if thisinfo>maxinfo:
                 i_A = i
