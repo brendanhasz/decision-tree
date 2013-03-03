@@ -14,10 +14,10 @@ where "train_data_filename" is the name of the file from which to make the decis
 To classify data using a constructed decision tree, run
 
 ```bash
-$ python applydt.py test_data_filename dt_filename
+$ python applydt.py test_data_filename dt_filename output_filename
 ```
 
-where "test_data_filename" is the data you wish to classify, and "dt_filename" is the file where the decision tree was saved by builddt.py.
+where "test_data_filename" is the data you wish to classify, "dt_filename" is the file where the decision tree was saved by builddt.py, and "output_filename" is the file to which you wish to output the classified results.
 
 
 # Copyright
