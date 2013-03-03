@@ -23,19 +23,24 @@ def parse_test_file(filename):
     return data
 
 
-def write_output_file(classes, att, filename):
+def write_output_file(c, att, filename):
     '''
     Writes classes and attributes to file filename
     '''
+    thefile = open(filename, 'w')
+    thefile.write([[c[i]+','+''.join(att[i])+'\n'] for i in range(0,len(c))])
+    thefile.close()
 
 
 def apply_decision_tree(test_data_fn, dt_fn, output_fn):
+    print "Applying decision tree "+dt_fn+" to test file "+test_data_fn+" ..."
     att = parse_test_file(test_data_fn)
     dt = load_dt(dt_fn)
     classes = []
     for a in att:
         classes.append(classify(a, dt))
     write_output_file(classes, att, output_fn)
+    print "Done! Classified attributes stored in "+output_fn
 
 
 #Apply decision tree on data in passed file
