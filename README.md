@@ -8,6 +8,16 @@
 ## Input format
 `builddt` and `applydt` take CSV (Comma Separated Value) formatted files.  The first column in the training file is the class, and the other columns are the attributes.  The test file should be the same, just without the first column of class data.  `applydt` outputs a file in the same format as the training data file.
 
+Some converters are supplied in `/parsers`.  For example, to convert training gene sequence data which has no comma separators, run
+
+```bash
+$ python parsers/gene_seq.py -train train_data_filename train_CSV_filename
+```
+
+And to convert test gene sequence data, run
+
+```bash
+$ python parsers/gene_seq.py -test test_data_filename train_CSV_filename
 ## Building a Decision Tree from training data
 To build a decision tree from training data, run
 
