@@ -6,7 +6,7 @@ from math import log
 
 def info_gain(Y, A):
     thesum = 0
-    print "lenY="+str(len(Y))+"   lenA="+str(len(A))
+    #print "lenY="+str(len(Y))+"   lenA="+str(len(A))
     for e in set(A):
         Ya = []
         for i in range(0,len(Y)):
