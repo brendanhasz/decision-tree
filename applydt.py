@@ -31,7 +31,7 @@ def write_output_file(c, att, filename):
     '''
     outstr='\n'.join([[c[i]+','+''.join(att[i])][0] for i in range(0,len(c))])
     thefile = open(filename, 'w')
-    thefile.write(outstr)
+    thefile.write(outstr+'\n')
     thefile.close()
 
 
@@ -45,5 +45,9 @@ def apply_decision_tree(test_data_fn, dt_fn, output_fn):
 
 
 #Apply decision tree on data in passed file
-apply_decision_tree(sys.argv[1], sys.argv[2], sys.argv[3])
+if len(sys.argv)==4:
+    apply_decision_tree(sys.argv[1], sys.argv[2], sys.argv[3])
+else:
+    print "\nUSAGE: python applydt.py <test_data_filename> <dt_filename> <output_filename>\n\n"
+
 
