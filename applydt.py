@@ -27,8 +27,9 @@ def write_output_file(c, att, filename):
     '''
     Writes classes and attributes to file filename
     '''
+    outstr='\n'.join([[c[i]+','+''.join(att[i])][0] for i in range(0,len(c))])
     thefile = open(filename, 'w')
-    thefile.write([[c[i]+','+''.join(att[i])+'\n'] for i in range(0,len(c))])
+    thefile.write(outstr)
     thefile.close()
 
 
