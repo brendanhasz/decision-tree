@@ -92,6 +92,8 @@ def build_decision_tree(train_data_fn, dt_fn):
 
 
 #Build decision tree from passed file
-build_decision_tree(sys.argv[1], sys.argv[2])
-
+if len(sys.argv)==3:
+    build_decision_tree(sys.argv[1], sys.argv[2])
+else:
+    print "\nUSAGE: python builddt.py <training_data_filename> <dcn_tree_filename>\n\n"
 
