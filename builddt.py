@@ -16,13 +16,14 @@ def ID3(examples, attributes):
 
     #ID3 algorithm
  
-    print examples
-    print attributes[0]
-
     return root
 
 
 def parse_training_file(filename):
+    '''
+    Parses an input file into a list of example classes and list of lists of
+    attributes
+    '''
     data = []
     thefile = open(filename, 'r')
     [[data.append([l.strip().split(',')[0], l.strip().split(',')[1:]])] for l in thefile]
