@@ -13,10 +13,28 @@ def ID3(examples, attributes):
     and a list of lists of attributes
     '''
     root = Tree()
+    if len(set(examples))==1: #if only 1 class of ie left, use it
+        root.data = examples[0]
+    elif len(attributes)<1: #if no attributes left, use most common
+        root.data = most_common(examples)
+    else:
+        #Find attribute that best classifies examples
+        maxinfo = 0
+        for i in range(0,len(attributes)):
+            thisinfo = info_gain(examples, attributes[i])
+            if thisinfo>maxinfo:
+                i_A = i
+                maxinfo=thisinfo
+        #For each possible value of max info attribute, add branch
+        for v in set(attributes[i_A])
+                
 
-    #ID3 algorithm
  
     return root
+
+
+def most_common(l):
+    return max(set(l), key=l.count)
 
 
 def parse_training_file(filename):
