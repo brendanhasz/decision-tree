@@ -10,7 +10,16 @@ def classify(att, dt):
     '''
     Classify a single set of attributes, given a decision tree
     '''
-    return '1'
+    if dt.isleaf(): #dt is decision node
+        if dt.data==None:
+            return str(2)
+        else:
+            return str(dt.data)
+    else: #dt is attr label node w/ possible attr children
+        for c in dt.children:
+            if c.data==att[dt.data]: ##this child is the corresponding attribute
+                return classify(att, c.children[0])
+    #return '1'
 
 
 def parse_test_file(filename):
@@ -35,11 +44,16 @@ def write_output_file(c, att, filename):
     thefile.close()
 
 
+def most_common(l):
+    return max(set(l), key=l.count)
+
+
 def apply_decision_tree(test_data_fn, dt_fn, output_fn):
     print "Applying decision tree "+dt_fn+" to test file "+test_data_fn+" ..."
     att = parse_test_file(test_data_fn)
     dt = load_dt(dt_fn)
-    classes = [classify(a, dt) for a in att]
+    classes = [classify(a, dt) for a in att] #classify each attr list
+    classes = [c if c!=None else most_common(classes) for c in classes] #cleanup
     write_output_file(classes, att, output_fn)
     print "Done! Classified attributes stored in "+output_fn
 
