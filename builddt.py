@@ -15,7 +15,6 @@ def ID3(ex, att, attr_labels, rl):
     for the attributes, and rl is the recursion level
     '''
     root = Tree()
-    print rl
     if rl>MAX_RECURSION: #Upon max recursion, return most frequent
         root.data = most_common(ex)
         return root
