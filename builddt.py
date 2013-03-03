@@ -25,15 +25,25 @@ def ID3(examples, attributes, attr_labels):
             if thisinfo>maxinfo:
                 i_A = i
                 maxinfo=thisinfo
-        root.data = attr_labels[i_a] #Store node attribute label
+        root.data = attr_labels[i_A] #Store node attribute label
+        A = attributes[i_A]
         #For each possible value of max info attribute, add branch
-        for v in set(attributes[i_A])
+        for v in set(A):
             child = Tree()
+            child.data = v
             root.addchild(child)
-
- 
+            E_v = [examples[i] for i in range(0,len(A)) if A[i]==v]
+            if len(E_v)<1:
+                leaf = Tree()
+                leaf.data = most_common(examples)
+                child.addchild(leaf)
+            else:
+                 child.addchild(ID3(E_v, all_except(attributes,i_A), all_except(attr_labels,i_A)))
     return root
 
+
+def all_except(l, i):
+    return l[:i]+l[(i+1):]
 
 def most_common(l):
     return max(set(l), key=l.count)
@@ -60,7 +70,7 @@ def parse_training_file(filename):
 def build_decision_tree(train_data_fn, dt_fn):
     print "Building decision tree for "+train_data_fn+" ..."
     examples, attributes = parse_training_file(train_data_fn) #Parse input
-    dt = ID3(examples, attributes, range(0,len(attributes))
+    dt = ID3(examples, attributes, range(0,len(attributes)))
     save_dt(dt, dt_fn) #Save the decision tree
     print "Built decision tree for "+train_data_fn+" saved in "+dt_fn
 
