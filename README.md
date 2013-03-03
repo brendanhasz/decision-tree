@@ -18,6 +18,8 @@ And to convert test gene sequence data, run
 
 ```bash
 $ python parsers/gene_seq.py -test test_data_filename train_CSV_filename
+```
+
 ## Building a Decision Tree from training data
 To build a decision tree from training data, run
 
