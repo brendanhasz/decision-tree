@@ -1,4 +1,7 @@
 .pyc
 .swp
 .data
+.test
+.train
+.dt
 

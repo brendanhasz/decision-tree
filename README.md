@@ -2,7 +2,7 @@
 `decision-tree` is a program which uses a decision tree machine learning algorithm to classify data. It constructs and applies decision trees to training and test data files.  The program uses the `ID3` (Interactive Dichotomiser 3) algorithm.
 
 
-# Useage
+# Usage
 [`python`](http://www.python.org/) is required to run the code.  To build a decision tree from training data, run
 
 ```bash
