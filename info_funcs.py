@@ -6,9 +6,10 @@ from math import log
 
 def info_gain(Y, A):
     thesum = 0
+    print "lenY="+str(len(Y))+"   lenA="+str(len(A))
     for e in set(A):
         Ya = []
-        for i in range(0,len(A)):
+        for i in range(0,len(Y)):
             if A[i]==e:
                 Ya.append(Y[i])
         thesum = thesum + float(len(Ya))/len(A)*entropy(Ya)

@@ -7,38 +7,42 @@ from Tree import *
 from info_funcs import *
 
 
-def ID3(examples, attributes, attr_labels):
+def ID3(ex, att, attr_labels):
     '''
     Performs the Interactive Dichotomiser 3 algorithm on a list of examples
     and a list of lists of attributes
     '''
     root = Tree()
-    if len(set(examples))==1: #if only 1 class of ie left, use it
-        root.data = examples[0]
-    elif len(attributes)<1: #if no attributes left, use most common
-        root.data = most_common(examples)
+    if len(set(ex))==1: #if only 1 class of ie left, use it
+        root.data = ex[0]
+    elif len(att)<1: #if no attributes left, use most common
+        root.data = most_common(ex)
     else:
         #Find attribute that best classifies examples
         maxinfo = 0
-        for i in range(0,len(attributes)):
-            thisinfo = info_gain(examples, attributes[i])
+        print ' '
+        for i in range(0,len(att)):
+            print len(att)
+            print i
+            thisinfo = info_gain(ex, att[i])
             if thisinfo>maxinfo:
                 i_A = i
                 maxinfo=thisinfo
         root.data = attr_labels[i_A] #Store node attribute label
-        A = attributes[i_A]
+        A = att[i_A]
         #For each possible value of max info attribute, add branch
         for v in set(A):
             child = Tree()
             child.data = v
             root.addchild(child)
-            E_v = [examples[i] for i in range(0,len(A)) if A[i]==v]
+            E_v = [ex[i] for i in range(0,len(A)) if A[i]==v]
+            #TODO: you also need to take these elements out of att!
             if len(E_v)<1:
                 leaf = Tree()
-                leaf.data = most_common(examples)
+                leaf.data = most_common(ex)
                 child.addchild(leaf)
             else:
-                 child.addchild(ID3(E_v, all_except(attributes,i_A), all_except(attr_labels,i_A)))
+                 child.addchild(ID3(E_v, all_except(att,i_A), all_except(attr_labels,i_A)))
     return root
 
 
