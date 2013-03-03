@@ -3,7 +3,13 @@
 
 
 # Usage
-[`python`](http://www.python.org/) is required to run the code.  To build a decision tree from training data, run
+[`python`](http://www.python.org/) is required to run the code.  
+
+## Input format
+`builddt` and `applydt` take CSV (Comma Separated Value) formatted files.  The first column in the training file is the class, and the other columns are the attributes.  The test file should be the same, just without the first column of class data.  `applydt` outputs a file in the same format as the training data file.
+
+## Building a Decision Tree from training data
+To build a decision tree from training data, run
 
 ```bash
 $ python builddt.py train_data_filename dt_filename
@@ -11,6 +17,7 @@ $ python builddt.py train_data_filename dt_filename
 
 where "train_data_filename" is the name of the file from which to make the decision tree, and "dt_filename" is the name of the file to which you would like to save the constructed decision tree.
 
+## Classifying test data
 To classify data using a constructed decision tree, run
 
 ```bash
