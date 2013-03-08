@@ -19,7 +19,6 @@ def classify(att, dt):
         for c in dt.children:
             if c.data==att[dt.data]: ##this child is the corresponding attribute
                 return classify(att, c.children[0])
-    #return '1'
 
 
 def parse_test_file(filename):

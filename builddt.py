@@ -87,6 +87,7 @@ def build_decision_tree(train_data_fn, dt_fn):
     print "Building decision tree for "+train_data_fn+" ..."
     examples, attributes = parse_training_file(train_data_fn) #Parse input
     dt = ID3(examples, attributes, range(0,len(attributes)),1)
+    print dt.tolist()
     save_dt(dt, dt_fn) #Save the decision tree
     print "Built decision tree for "+train_data_fn+" saved in "+dt_fn
 

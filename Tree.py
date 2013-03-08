@@ -10,3 +10,5 @@ class Tree(object):
         self.children.append(obj)
     def isleaf(self):
         return len(self.children) < 1
+    def tolist(self):
+        return [self.data, [c.tolist() for c in self.children]]

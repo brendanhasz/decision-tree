@@ -1,5 +1,5 @@
 # dt_io.py
-# Functions to save and load decision trees to file
+# Functions to save and load decision trees (or anything else really) to file
 
 import pickle
 
