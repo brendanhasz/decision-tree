@@ -1,4 +1,4 @@
-# applydt.py
+# applydt_utils.py
 # Applies a decision tree to a test file and classifies the data
 
 import sys
