@@ -15,13 +15,40 @@ else:
     if opt=='-train':
         infile = open(fn_in, 'r')
         outfile = open(fn_out, 'w')
-        outfile.write("".join([",".join([l.translate(None,',')][0])[0:-2]+'\n' for l in infile]))
+        for l in infile:
+            to = [l.strip().split(',')[-1]] #add class to front
+            for e in l.strip().split(',')[:-1]:
+                if e=='0':
+                    to.append('0')
+                else:
+                    to.append('1')
+            outfile.write(','.join(to)+'\n')
+        outfile.close()
+        infile.close()
+    if opt=='-traintotest':
+        infile = open(fn_in, 'r')
+        outfile = open(fn_out, 'w')
+        for l in infile:
+            to = []
+            for e in l.strip().split(',')[:-1]:
+                if e=='0':
+                    to.append('0')
+                else:
+                    to.append('1')
+            outfile.write(','.join(to)+'\n')
         outfile.close()
         infile.close()
     elif opt=='-test':
         infile = open(fn_in, 'r')
         outfile = open(fn_out, 'w')
-        outfile.write('\n'.join([','.join([c for c in l])[0:-2] for l in infile]))
+        for l in infile:
+            to = []
+            for e in l.strip().split(',')[:-1]:
+                if e=='0':
+                    to.append('0')
+                else:
+                    to.append('1')
+            outfile.write(','.join(to)+'\n')
         outfile.close()
         infile.close()
     else:

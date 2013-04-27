@@ -6,7 +6,7 @@ from dt_io import *
 from Tree import *
 from info_funcs import *
 
-MAX_RECURSION = 10
+MAX_RECURSION = 15 
 
 def ID3(ex, att, attr_labels, rl):
     '''
@@ -15,6 +15,7 @@ def ID3(ex, att, attr_labels, rl):
     for the attributes, and rl is the recursion level
     '''
     root = Tree()
+    print rl
     if rl>MAX_RECURSION: #Upon max recursion, return most frequent
         root.data = most_common(ex)
         return root

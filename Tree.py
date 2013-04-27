@@ -12,3 +12,5 @@ class Tree(object):
         return len(self.children) < 1
     def tolist(self):
         return [self.data, [c.tolist() for c in self.children]]
+    def tostring(self):
+        return str(self.tolist())
