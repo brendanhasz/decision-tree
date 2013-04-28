@@ -9,6 +9,7 @@ from builddt_utils import ID3
 from builddt_utils import parse_training_file
 from applydt_utils import *
 
+perc_train = 0.8 #percent of training samples to use for making this tree
 
 def apply_bagged_dt(test_fn, dt_fn, out_fn):
     att = parse_test_file(test_fn)
@@ -25,7 +26,7 @@ def build_bagged_dt(train_fn, dt_fn, num_trees):
         print "Building tree number "+str(k+1)+" of "+str(int(num_trees))
         ex_s = []
         att_s = [[] for e in attributes]
-        for j in range(1,int(len(examples)*0.9)): #build sampled dataset
+        for j in range(1,int(len(examples)*perc_train)): #build sampled dataset
             r = randrange(0,len(attributes[0]))
             ex_s.append(examples[r])
             [att_s[i].append(attributes[i][r]) for i in range(0,len(attributes))]
