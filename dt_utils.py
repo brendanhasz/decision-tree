@@ -59,7 +59,7 @@ def most_common(l):
     return max(set(l), key=l.count)
 
 
-def ID3(ex, att, attr_labels, rl):
+def ID3(ex, att, attr_labels, rl, mr):
     '''
     Performs the Interactive Dichotomiser 3 algorithm on a list of examples
     and a list of lists of attributes.  attr_labels is the list of labels
@@ -67,7 +67,7 @@ def ID3(ex, att, attr_labels, rl):
     '''
     root = Tree()
     print rl
-    if rl>MAX_RECURSION: #Upon max recursion, return most frequent
+    if rl>mr: #Upon max recursion, return most frequent
         root.data = most_common(ex)
         return root
     if len(set(ex))==1: #if only 1 class of ie left, use it
@@ -106,7 +106,7 @@ def ID3(ex, att, attr_labels, rl):
                 leaf.data = most_common(ex)
                 child.addchild(leaf)
             else:
-                 child.addchild(ID3(E_v, all_except(att_v,i_A), all_except(attr_labels,i_A), rl+1))
+                 child.addchild(ID3(E_v, all_except(att_v,i_A), all_except(attr_labels,i_A), rl+1, mr))
     return root
 
 
@@ -128,10 +128,10 @@ def parse_training_file(filename):
     return examples, attributes
 
 
-def build_decision_tree(train_data_fn, dt_fn):
+def build_decision_tree(train_data_fn, dt_fn, mr):
     print "Building decision tree for "+train_data_fn+" ..."
     examples, attributes = parse_training_file(train_data_fn) #Parse input
-    dt = ID3(examples, attributes, range(0,len(attributes)),1)
+    dt = ID3(examples, attributes, range(0,len(attributes)),1, mr)
     save_dt(dt, dt_fn) #Save the decision tree
     print "Built decision tree for "+train_data_fn+" saved in "+dt_fn
 
@@ -197,7 +197,7 @@ def apply_bagged_dt(test_fn, dt_fn, out_fn):
     write_output_file(outcomes, att, out_fn)
 
 
-def build_bagged_dt(train_fn, dt_fn, num_trees):
+def build_bagged_dt(train_fn, dt_fn, num_trees, mr):
     examples, attributes = parse_training_file(train_fn) #parse input
     baglist = []
     for k in range(0,int(num_trees)): #loop, each time
@@ -208,7 +208,7 @@ def build_bagged_dt(train_fn, dt_fn, num_trees):
             r = randrange(0,len(attributes[0]))
             ex_s.append(examples[r])
             [att_s[i].append(attributes[i][r]) for i in range(0,len(attributes))]
-        baglist.append(ID3(ex_s,att_s,range(0,len(attributes)),1)) #run ID3 + append
+        baglist.append(ID3(ex_s,att_s,range(0,len(attributes)),1, mr)) #run ID3 + append
     save_dt(baglist,dt_fn) #save list of trees
 
 
