@@ -3,7 +3,6 @@
 
 from math import log
 
-
 def info_gain(Y, A):
     thesum = 0
     #print "lenY="+str(len(Y))+"   lenA="+str(len(A))
