@@ -2,7 +2,7 @@
 # Applies a bootstrap aggregate model to test data
 
 import sys
-from bagdt_utils import *
+from dt_utils import apply_bagged_dt
 
 # Apply bootstrap aggregate model to passed test file
 if len(sys.argv)==4:

@@ -1,7 +1,8 @@
 # applydt.py
 # Applies a decision tree to a test file and classifies the data
 
-from applydt_utils import *
+import sys
+from dt_utils import apply_decision_tree
 
 #Apply decision tree on data in passed file
 if len(sys.argv)==4:

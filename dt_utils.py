@@ -4,6 +4,11 @@
 import sys
 from Tree import *
 
+#Global variables
+MAX_RECURSION = 15 #Max depth of the tree
+perc_train = 0.8 #percent of training samples to use for making this tree
+
+
 ###################################################
 # Information theory functions (entropy, information gain, etc)
 from math import log
@@ -178,3 +183,33 @@ def apply_decision_tree(test_data_fn, dt_fn, output_fn):
     classes = [c if c!=None else most_common(classes) for c in classes] #cleanup
     write_output_file(classes, att, output_fn)
     print "Done! Classified attributes stored in "+output_fn
+    
+    
+###################################################
+# Bagging - utilities for Bootstrap aggregation model
+from random import randrange
+
+def apply_bagged_dt(test_fn, dt_fn, out_fn):
+    att = parse_test_file(test_fn)
+    baglist = load_dt(dt_fn)
+    outcomes = [most_common([classify(a,baglist[i]) for i in range(0,len(baglist))]) for a in att]
+    outcomes = [c if c!=None else most_common(outcomes) for c in outcomes] #cleanup
+    write_output_file(outcomes, att, out_fn)
+
+
+def build_bagged_dt(train_fn, dt_fn, num_trees):
+    examples, attributes = parse_training_file(train_fn) #parse input
+    baglist = []
+    for k in range(0,int(num_trees)): #loop, each time
+        print "Building tree number "+str(k+1)+" of "+str(int(num_trees))
+        ex_s = []
+        att_s = [[] for e in attributes]
+        for j in range(1,int(len(examples)*perc_train)): #build sampled dataset
+            r = randrange(0,len(attributes[0]))
+            ex_s.append(examples[r])
+            [att_s[i].append(attributes[i][r]) for i in range(0,len(attributes))]
+        baglist.append(ID3(ex_s,att_s,range(0,len(attributes)),1)) #run ID3 + append
+    save_dt(baglist,dt_fn) #save list of trees
+
+
+

@@ -1,7 +1,8 @@
 # builddt.py
 # Builds a decision tree from a file
 
-from builddt_utils import *
+import sys
+from dt_utils import build_decision_tree
 
 #Build decision tree from passed file
 if len(sys.argv)==3:
