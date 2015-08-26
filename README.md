@@ -1,5 +1,5 @@
 # Decision Tree
-`decision-tree` is a program which uses a decision tree machine learning algorithm to classify data. It constructs and applies decision trees to training and test data files.  The program uses the `ID3` (Interactive Dichotomiser 3) algorithm.
+`decision-tree` is a program which uses a decision tree machine learning algorithm to classify data. It constructs and applies decision trees to training and test data files.  The program uses the `ID3` (Iterative Dichotomiser 3) algorithm.
 
 
 # Usage
